@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Product Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+   /* Header Styles */
+  header {
+  background-color: #f1f1f1;
+  padding: 10px;
+  }
+
+  .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  }
+
+  .logo {
+  font-weight: bold;
+  font-size: 20px;
+  }
+
+  .nav-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  }
+
+  .nav-links li {
+  margin-left: 10px;
+  }
+
+.nav-links li a {
+  text-decoration: none;
+  color: #000;
+}
+
+.nav-links li a:hover {
+  text-decoration: underline;
+}
+
+.nav-links li:last-child {
+  margin-left: 20px;
+}
+
+/* Float the navigation to the right */
+.nav-links {
+  margin-left: auto;
+}
+    h1 {
+      text-align: center;
+    }
+
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    label {
+      display: block;
+      margin-top: 20px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea {
+      width: 100%;
+      padding: 5px;
+      font-size: 16px;
+      margin-top: 5px;
+    }
+
+    textarea {
+      height: 100px;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <div class="logo">Food Order</div>
+      <ul class="nav-links">
+        <li><a href="/admindash">Home</a></li>
+        <li><a href="/deteil">details</a></li>
+        <li><a href="/">Log Out</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <h1>Product Page</h1>
+
+  <form action="/upload" method="POST" enctype="multipart/form-data">
+    <label for="photo">Product Photo:</label>
+    <input type="file"  name="photo" accept="image/*">
+
+    <label for="name">Product Name:</label>
+    <input type="text"  name="name" required>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" required></textarea>
+
+    <label for="price">Price:</label>
+    <input type="text" name="price" step="0.01" required>
+
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>

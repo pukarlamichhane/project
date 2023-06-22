@@ -1,0 +1,198 @@
+/* styles.css */
+
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header Styles */
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.nav-links {
+  float: right;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.nav-links li {
+  margin-left: 15px;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Hero Section Styles */
+.hero {
+  background-image: url(hero-background.jpg);
+  background-size: cover;
+  background-position: center;
+  padding: 100px;
+  text-align: center;
+  color: #fff;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #ff5e14;
+  color: #fff;
+  font-size: 18px;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+/* Featured Dishes Section Styles */
+.featured {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.featured h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+.dish-card {
+  display: inline-block;
+  width: 300px;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.dish-card img {
+  width: 100%;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.dish-card h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.dish-card p {
+  font-size: 16px;
+}
+
+/* Why Choose Us Section Styles */
+.why-choose-us {
+  background-color: #f5f5f5;
+  padding: 50px 20px;
+}
+
+.why-choose-us h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.text {
+  flex: 1;
+}
+
+.image {
+  flex: 1;
+  text-align: center;
+}
+
+.image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+/* Footer Styles */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Media Queries for Responsive Design */
+@media only screen and (max-width: 768px) {
+  /* Header */
+  .nav-links {
+    float: none;
+    display: none;
+  }
+
+  .nav-links li {
+    margin: 0;
+  }
+
+  .logo {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  /* Hero Section */
+  .hero {
+    padding: 50px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .hero p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  /* Featured Dishes Section */
+  .featured {
+    padding: 30px;
+  }
+
+  .dish-card {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  /* Why Choose Us Section */
+  .why-choose-us {
+    padding: 30px;
+  }
+
+  .content {
+    flex-direction: column;
+  }
+
+  .text {
+    margin-bottom: 20px;
+  }
+}

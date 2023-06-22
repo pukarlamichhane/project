@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Order - Dashboard</title>
+  <link rel="stylesheet" href="/static/css/dashboard.css"> <!-- External CSS file for styling -->
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <div class="logo">Food Order</div>
+      <ul class="nav-links">
+        <li><a href="#">Log Out</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="dashboard" id="products-container"></section>
+
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <span class="close" onclick="closePopup()">&times;</span>
+      <h2>Order Form</h2>
+      <form id="order-form" action="/last" method="POST">
+        <label for="item">Selected Item:</label>
+        <input type="text" id="selected-item" name="selected-item" readonly>
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" min="1" required>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+        <label for="address">Address:</label>
+        <div>
+          <textarea id="address" name="address" required></textarea>
+          <button type="button" onclick="getLocation()">Get Location</button>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+  <script src="/static/js/dashboard.js"></script> <!-- External JavaScript file for popup functionality and API data retrieval -->
+</body>
+</html>
