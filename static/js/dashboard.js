@@ -120,7 +120,7 @@ function submitOrderForm(event) {
 }
 
 // Add submit event listener to the order form
-//document.getElementById("order-form").addEventListener("submit", submitOrderForm);
+document.getElementById("order-form").addEventListener("submit", submitOrderForm);
 
 // Fetch and render products when the page loads
 window.onload = fetchAndRenderProducts;
