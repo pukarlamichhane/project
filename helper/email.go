@@ -36,7 +36,7 @@ func Ordermail(name, address, items, quntity, phone string) {
 		"smtp.gmail.com",
 	)
 
-	body := "\nPhone:" + phone + "\n:Quantity" + quntity + "\n:Itemname" + items + "\n:name:" + name + "\n:address" + address
+	body := "\nPhone:" + phone + "\nQuantity:" + quntity + "\nItemname:" + items + "\nname:" + name + "\naddress:" + address
 	msg := "Subject:" + "About order" + "\n" + body
 
 	err := smtp.SendMail(

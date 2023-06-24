@@ -29,5 +29,6 @@ func main() {
 	r.HandleFunc("/getall", middleware.Auth(http.HandlerFunc(getall))).Methods("GET")
 	r.HandleFunc("/items/{id}", middleware.Auth(http.HandlerFunc(delete))).Methods("DELETE")
 	r.HandleFunc("/deteil", deteil)
+	r.HandleFunc("/update/{id}", update).Methods("PUT")
 	http.ListenAndServe(":9999", r)
 }

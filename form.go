@@ -183,8 +183,7 @@ func getdata(w http.ResponseWriter, r *http.Request) {
 func last(w http.ResponseWriter, r *http.Request) {
 	s := model.Order{}
 	json.NewDecoder(r.Body).Decode(&s)
-	//helper.Ordermail(s.Name, s.Address, s.Item, s.Quantity, s.Phone)
-	fmt.Println(s.Name, s.Address, s.Item, s.Quantity, s.Phone)
+	helper.Ordermail(s.Name, s.Address, s.Item, s.Quantity, s.Phone)
 }
 
 func getall(w http.ResponseWriter, r *http.Request) {
@@ -217,5 +216,18 @@ func delete(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			fmt.Print(w, err)
 		}
+	}
+}
+
+func update(w http.ResponseWriter, r *http.Request) {
+	db := database.Getconnection()
+	defer db.Close()
+	s := model.Model{}
+	json.NewDecoder(r.Body).Decode(&s)
+	parms := mux.Vars(r)
+	id, _ := strconv.Atoi(parms["id"])
+	_, err := db.Exec("update items set name=?,imgurl=?,description=?,price=? where id=?", id, s.Name, s.ImgURL, s.Description, s.Price)
+	if err != nil {
+		fmt.Print(err)
 	}
 }

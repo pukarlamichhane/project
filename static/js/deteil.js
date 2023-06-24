@@ -125,7 +125,7 @@
         };
 
         // Make a PUT request to the API endpoint with the updated data
-        const updateUrl = `http://localhost:9999/items/${id}`;
+        const updateUrl = `http://localhost:9999/update/${id}`;
         fetch(updateUrl, {
           method: 'PUT',
           headers: {
