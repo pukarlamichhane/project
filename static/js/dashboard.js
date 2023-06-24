@@ -108,16 +108,38 @@ function submitOrderForm(event) {
   const phone = document.getElementById("phone").value;
   const address = document.getElementById("address").value;
 
-  // Do something with the form data (e.g., send it to the server)
-  console.log("Selected Item:", selectedItem);
-  console.log("Quantity:", quantity);
-  console.log("Name:", name);
-  console.log("Phone Number:", phone);
-  console.log("Address:", address);
+  // Create an object with the form data
+  const formData = {
+    selectedItem: selectedItem,
+    quantity: quantity,
+    person: name,
+    phone: phone,
+    address: address
+  };
+
+  // Send the form data to the server
+  fetch("http://localhost:9999/orders", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(formData)
+  })
+    .then(response => response.json())
+    .then(data => {
+      // Handle the API response
+      console.log("Response from server:", data);
+      // Additional code to handle the response as needed
+    })
+    .catch(error => {
+      // Handle any errors that occurred during the request
+      console.error("Error:", error);
+    });
 
   // Close the popup
   closePopup();
 }
+
 
 // Add submit event listener to the order form
 document.getElementById("order-form").addEventListener("submit", submitOrderForm);

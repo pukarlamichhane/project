@@ -116,13 +116,45 @@
         const updatedPrice = updatePriceInput.value;
         const id = item.id;
 
-        // Handle the update functionality with the updated values and id
-        // Add your logic here
+        // Create an object with the updated data
+        const updatedData = {
+          imgurl: updatedImage,
+          description: updatedDescription,
+          name: updatedName,
+          price: updatedPrice
+        };
 
-        // Close the update popup after updating the value
-        popup.style.display = 'none';
+        // Make a PUT request to the API endpoint with the updated data
+        const updateUrl = `http://localhost:9999/items/${id}`;
+        fetch(updateUrl, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(updatedData)
+        })
+          .then(response => {
+            // Check if the request was successful
+            if (response.ok) {
+              // Update the item's values in the table
+              item.imgurl = updatedImage;
+              item.description = updatedDescription;
+              item.name = updatedName;
+              item.price = updatedPrice;
+
+              // Close the update popup after updating the value
+              popup.style.display = 'none';
+            } else {
+              // Handle error response
+              console.log('Update request failed');
+            }
+          })
+          .catch(error => {
+            console.log('Error:', error);
+          });
       });
 
       // Display the update popup
       popup.style.display = 'block';
     }
+  

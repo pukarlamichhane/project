@@ -1,20 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>Product Table</title>
   <link rel="stylesheet" href="/static/css/deteil.css">
 </head>
 <body>
-  <header>
-    <div class="navbar">
-      <div class="logo">Food Order</div>
-      <ul class="nav-links">
-        <li><a href="/admindash">Home</a></li>
-        <li><a href="/submit">upload</a></li>
-        <li><a href="/">Log Out</a></li>
-      </ul>
-    </div>
-  </header>
-
   <table>
     <thead>
       <tr>
@@ -26,23 +16,28 @@
         <th>Actions</th>
       </tr>
     </thead>
-    <tbody id="table-body"></tbody>
+    <tbody id="table-body">
+      <!-- Table rows will be dynamically generated here -->
+    </tbody>
   </table>
 
-  <div class="popup" id="update-popup">
+  <div id="update-popup" style="display: none;">
+    <h2>Update Product</h2>
     <label for="update-image">Image URL:</label>
     <input type="text" id="update-image">
+    <br>
     <label for="update-description">Description:</label>
     <input type="text" id="update-description">
+    <br>
     <label for="update-name">Name:</label>
     <input type="text" id="update-name">
+    <br>
     <label for="update-price">Price:</label>
     <input type="text" id="update-price">
-    <label for="update-id">ID:</label>
-    <input type="text" id="update-id" readonly>
+    <br>
+    <input type="hidden" id="update-id">
     <button id="update-submit">Update</button>
   </div>
-
   <script src="/static/js/deteil.js"></script>
 </body>
 </html>

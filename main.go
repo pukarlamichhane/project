@@ -23,7 +23,7 @@ func main() {
 	r.HandleFunc("/submit", middleware.Auth(http.HandlerFunc(weed)))
 	r.HandleFunc("/cusdash", middleware.Auth(http.HandlerFunc(custmer)))
 	r.HandleFunc("/admindash", middleware.Auth(http.HandlerFunc(admin)))
-	r.HandleFunc("/last", middleware.Auth(http.HandlerFunc(last)))
+	r.HandleFunc("/orders", middleware.Auth(http.HandlerFunc(last)))
 	r.HandleFunc("/upload", middleware.Auth(http.HandlerFunc(Upload))).Methods("POST")
 	r.HandleFunc("/get", getdata).Methods("GET")
 	r.HandleFunc("/getall", middleware.Auth(http.HandlerFunc(getall))).Methods("GET")

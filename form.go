@@ -181,17 +181,10 @@ func getdata(w http.ResponseWriter, r *http.Request) {
 }
 
 func last(w http.ResponseWriter, r *http.Request) {
-	if r.Method != "POST" {
-		http.Redirect(w, r, "/last", http.StatusSeeOther)
-		return
-	}
-	itemname := r.FormValue("selected-item")
-	quantity := r.FormValue("quantity")
-	name := r.FormValue("name")
-	phonenumber := r.FormValue("phone")
-	address := r.FormValue("address")
-	fmt.Println(name)
-	helper.Ordermail(name, address, itemname, quantity, phonenumber)
+	s := model.Order{}
+	json.NewDecoder(r.Body).Decode(&s)
+	//helper.Ordermail(s.Name, s.Address, s.Item, s.Quantity, s.Phone)
+	fmt.Println(s.Name, s.Address, s.Item, s.Quantity, s.Phone)
 }
 
 func getall(w http.ResponseWriter, r *http.Request) {
