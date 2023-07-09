@@ -34,7 +34,7 @@ func log(w http.ResponseWriter, r *http.Request) {
 	row := a.QueryRow(stmt, fname)
 	err := row.Scan(&password, &role)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Fprintln(w, err)
 	}
 	if lname == password {
 		expirationTime := time.Now().Add(5 * time.Minute)
@@ -222,12 +222,22 @@ func delete(w http.ResponseWriter, r *http.Request) {
 func update(w http.ResponseWriter, r *http.Request) {
 	db := database.Getconnection()
 	defer db.Close()
+
 	s := model.Model{}
 	json.NewDecoder(r.Body).Decode(&s)
-	parms := mux.Vars(r)
-	id, _ := strconv.Atoi(parms["id"])
-	_, err := db.Exec("update items set name=?,imgurl=?,description=?,price=? where id=?", id, s.Name, s.ImgURL, s.Description, s.Price)
+
+	params := mux.Vars(r)
+	id, err := strconv.Atoi(params["id"])
 	if err != nil {
-		fmt.Print(err)
+		http.Error(w, "Invalid ID", http.StatusBadRequest)
+		return
 	}
+
+	fmt.Print(s.Name, s.ImgURL, s.Description, s.Price, id)
+	_, err = db.Exec("UPDATE items SET itemname=?, imageurl=?, description=?, price=? WHERE id=?", s.Name, s.ImgURL, s.Description, s.Price, id)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
 }
