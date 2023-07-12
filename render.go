@@ -16,7 +16,7 @@ func init() {
 }
 
 func homepage(w http.ResponseWriter, r *http.Request) {
-	temp.ExecuteTemplate(w, "home.html", nil)
+	temp.ExecuteTemplate(w, "index.html", nil)
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
