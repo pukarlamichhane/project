@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"os"
 
 	"github.com/gorilla/mux"
 	middleware "github.com/pukarlamichhane/project.git/middleware"
@@ -30,5 +31,11 @@ func main() {
 	r.HandleFunc("/items/{id}", middleware.Auth(http.HandlerFunc(delete))).Methods("DELETE")
 	r.HandleFunc("/deteil", deteil)
 	r.HandleFunc("/update/{id}", update).Methods("PUT")
-	http.ListenAndServe(":9999", r)
+
+	// Read port from environment variables, default to 0.0.0.0:9999
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "0.0.0.0"
+	}
+	http.ListenAndServe(port, r)
 }
