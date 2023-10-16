@@ -1,0 +1,12 @@
+{
+    "functions": {
+      "api": {
+        "handler": "index.handler",
+        "runtime": "vercel-go@1.1.0"
+      }
+    },
+    "builds": [
+      { "src": "main.go", "use": "@vercel/go" }
+    ]
+  }
+  
