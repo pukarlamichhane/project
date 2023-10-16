@@ -28,8 +28,8 @@ func log(w http.ResponseWriter, r *http.Request) {
 	lname := r.FormValue("password")
 
 	var password, role string
-	a := database.Getconnection()
-	stmt := "Select password,role from user where email=?"
+	a := database.GetConnection()
+	stmt := "SELECT password, role FROM user WHERE email = $1"
 	defer a.Close()
 	row := a.QueryRow(stmt, fname)
 	err := row.Scan(&password, &role)
@@ -76,13 +76,13 @@ func sup(w http.ResponseWriter, r *http.Request) {
 	name2 := r.FormValue("confirm-password")
 
 	if name2 == lname {
-		a := database.Getconnection()
+		a := database.GetConnection()
 		defer a.Close()
 		err := a.Ping()
 		if err != nil {
 			panic(err.Error())
 		}
-		stmt, err := a.Prepare("INSERT INTO user (username, email, password, role) VALUES (?, ?, ?, 'user')")
+		stmt, err := a.Prepare("INSERT INTO user (username, email, password, role) VALUES ($1, $2, $3, 'user')")
 		if err != nil {
 			panic(err.Error())
 		}
@@ -144,13 +144,13 @@ func Upload(w http.ResponseWriter, r *http.Request) {
 	description := r.FormValue("description")
 	price := r.FormValue("price")
 
-	a := database.Getconnection()
+	a := database.GetConnection()
 	defer a.Close()
 	err = a.Ping()
 	if err != nil {
 		panic(err.Error())
 	}
-	stmt, err := a.Prepare("INSERT INTO items (itemname, price, description, imageurl) VALUES (?, ?, ?, ?)")
+	stmt, err := a.Prepare("INSERT INTO items (itemname, price, description, imageurl) VALUES ($1, $2, $3, $4)")
 	if err != nil {
 		panic(err.Error())
 	}
@@ -163,11 +163,11 @@ func Upload(w http.ResponseWriter, r *http.Request) {
 }
 
 func getdata(w http.ResponseWriter, r *http.Request) {
-	db := database.Getconnection()
+	db := database.GetConnection()
 	defer db.Close()
 	ss := []model.Model{}
 	s := model.Model{}
-	rows, err := db.Query("select itemname,price,description,imageurl from items")
+	rows, err := db.Query("SELECT itemname, price, description, imageurl FROM items")
 	if err != nil {
 		fmt.Fprint(w, err)
 	} else {
@@ -187,7 +187,7 @@ func last(w http.ResponseWriter, r *http.Request) {
 }
 
 func getall(w http.ResponseWriter, r *http.Request) {
-	db := database.Getconnection()
+	db := database.GetConnection()
 	defer db.Close()
 	ss := []model.Model{}
 	s := model.Model{}
@@ -204,11 +204,11 @@ func getall(w http.ResponseWriter, r *http.Request) {
 }
 
 func delete(w http.ResponseWriter, r *http.Request) {
-	db := database.Getconnection()
+	db := database.GetConnection()
 	defer db.Close()
 	parms := mux.Vars(r)
 	id, _ := strconv.Atoi(parms["id"])
-	result, err := db.Exec("delete from items where id=?", id)
+	result, err := db.Exec("delete from items where id=$1", id)
 	if err != nil {
 		fmt.Fprint(w, err)
 	} else {
@@ -220,7 +220,7 @@ func delete(w http.ResponseWriter, r *http.Request) {
 }
 
 func update(w http.ResponseWriter, r *http.Request) {
-	db := database.Getconnection()
+	db := database.GetConnection()
 	defer db.Close()
 
 	s := model.Model{}

@@ -2,15 +2,21 @@ package database
 
 import (
 	"database/sql"
-	"fmt"
 
-	_ "github.com/go-sql-driver/mysql"
+	_ "github.com/lib/pq"
 )
 
-func Getconnection() *sql.DB {
-	db, err := sql.Open("mysql", "root:123456789@tcp(localhost:3306)/project")
+func GetConnection() *sql.DB {
+	connectionString := "postgres://default:EwreR3fGg8ND@ep-orange-credit-11050848.us-east-1.postgres.vercel-storage.com:5432/verceldb"
+	db, err := sql.Open("postgres", connectionString)
 	if err != nil {
-		fmt.Println(err)
+		return nil
 	}
+
+	err = db.Ping()
+	if err != nil {
+		return nil
+	}
+
 	return db
 }

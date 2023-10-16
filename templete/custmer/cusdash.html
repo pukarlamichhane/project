@@ -1,45 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Food Order - Dashboard</title>
-  <link rel="stylesheet" href="/static/css/dashboard.css"> <!-- External CSS file for styling -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Order - Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
+
 <body>
-  <header>
-    <div class="navbar">
-      <div class="logo">Food Order</div>
-      <ul class="nav-links">
-        <li><a href="/">Log Out</a></li>
-      </ul>
-    </div>
-  </header>
+    <header class="bg-light py-3">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Food Order</a>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Log Out</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
-  <section class="dashboard" id="products-container"></section>
+    <section class="dashboard container" id="products-container"></section>
 
-  <div id="popup" class="popup">
-    <div class="popup-content">
-      <span class="close" onclick="closePopup()">&times;</span>
-      <h2>Order Form</h2>
-      <form id="order-form">
-        <label for="item">Selected Item:</label>
-        <input type="text" id="selected-item" name="selected-item" readonly>
-        <label for="quantity">Quantity:</label>
-        <input type="number" id="quantity" name="quantity" min="1" required>
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-        <label for="phone">Phone Number:</label>
-        <input type="tel" id="phone" name="phone" required>
-        <label for="address">Address:</label>
-        <div>
-          <textarea id="address" name="address" required></textarea>
-          <button type="button" onclick="getLocation()">Get Location</button>
+    <div class="modal" id="popup">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Order Form</h2>
+                    <button type="button" class="close" onclick="closePopup()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="order-form">
+                        <div class="form-group">
+                            <label for="selected-item">Selected Item:</label>
+                            <input type="text" class="form-control" id="selected-item" name="selected-item" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity">Quantity:</label>
+                            <input type="number" class="form-control" id="quantity" name="quantity" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number:</label>
+                            <input type="tel" class="form-control" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address:</label>
+                            <textarea class="form-control" id="address" name="address" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-secondary" onclick="getLocation()">Get Location</button>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
         </div>
-        <button type="submit">Submit</button>
-      </form>
     </div>
-  </div>
-  <script src="/static/js/dashboard.js"></script> <!-- External JavaScript file for popup functionality and API data retrieval -->
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/static/js/dashboard.js"></script>
 </body>
+
 </html>
